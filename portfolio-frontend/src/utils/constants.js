@@ -8,10 +8,8 @@ export const PERSONAL_INFO = {
   email: "iyerprashant44@gmail.com",
   phone: "+91-7303789658",
   location: "Kalyan, Maharashtra, India",
-  profileImage:
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
-  aboutImage:
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=400&fit=crop",
+  profileImage: "/Profile.jpeg",
+  aboutImage: "/Profile.jpeg",
   experience: "2+ Years",
   projectsCompleted: "15+",
   clientsSatisfied: "10+",
