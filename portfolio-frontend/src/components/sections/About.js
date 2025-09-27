@@ -103,26 +103,28 @@ const About = () => {
           >
             <div className="space-y-6">
               <h3 className="text-2xl md:text-3xl font-bold text-white">
-                Hi, I'm {PERSONAL_INFO.name.split(" ")[0]} 👋
+                Hi, I'm Prashant 👋
               </h3>
 
               <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
                 <p>
-                  I'm a passionate Full Stack Developer with expertise in the
-                  MERN stack. I love creating innovative web applications that
-                  solve real-world problems and provide exceptional user
-                  experiences.
+                  I'm a passionate Full Stack Developer with 2+ years of
+                  professional experience building dashboards, automation tools,
+                  and secure applications. I specialize in React, Node.js,
+                  MongoDB, and Python, with strong expertise in performance
+                  optimization and business intelligence.
                 </p>
                 <p>
-                  With a strong foundation in both frontend and backend
-                  technologies, I enjoy working on projects from conception to
-                  deployment, ensuring high-quality, scalable solutions that
-                  make a difference.
+                  Currently working as a Senior Associate at SBI Life Insurance,
+                  where I've revolutionized reporting processes by reducing
+                  generation time from 3 days to 3 hours and built automation
+                  tools that save 80% of manual processing time.
                 </p>
                 <p>
-                  When I'm not coding, you can find me exploring new
-                  technologies, contributing to open-source projects, or sharing
-                  my knowledge through technical writing and mentoring.
+                  I'm passionate about delivering scalable, user-focused
+                  solutions that reduce manual effort and improve business
+                  performance. My experience spans enterprise applications,
+                  e-commerce platforms, and business intelligence dashboards.
                 </p>
               </div>
             </div>

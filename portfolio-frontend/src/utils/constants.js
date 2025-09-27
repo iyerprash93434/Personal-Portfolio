@@ -1,36 +1,40 @@
 // src/utils/constants.js
+// src/utils/constants.js
 export const PERSONAL_INFO = {
-  name: "John Doe",
-  title: "Full Stack Developer & MERN Stack Specialist",
+  name: "Prashant Natarajan Iyer",
+  title: "Full Stack Developer & MCA Graduate",
   description:
-    "Passionate about creating modern, responsive web applications with clean code and exceptional user experiences.",
-  email: "john.doe@example.com",
-  phone: "+91 98765 43210",
-  location: "Mumbai, Maharashtra, India",
+    "Full-stack developer with 2+ years of professional experience building dashboards, automation tools, and secure applications. Passionate about delivering scalable, user-focused solutions that reduce manual effort and improve business performance.",
+  email: "iyerprashant44@gmail.com",
+  phone: "+91-7303789658",
+  location: "Kalyan, Maharashtra, India",
   profileImage:
     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
   aboutImage:
     "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=400&fit=crop",
-  experience: "3+ Years",
-  projectsCompleted: "25+",
-  clientsSatisfied: "15+",
+  experience: "2+ Years",
+  projectsCompleted: "15+",
+  clientsSatisfied: "10+",
+  degree: "M.C.A. - Computer Applications",
+  university: "SIES College of Management Studies",
 };
 
 export const SOCIAL_LINKS = {
-  github: "https://github.com/yourusername",
-  linkedin: "https://linkedin.com/in/yourusername",
+  github: "https://github.com/iyerprash93434",
+  linkedin:
+    "https://www.linkedin.com/in/prashant-iyer-5920bb2b2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   twitter: "https://twitter.com/yourusername",
-  instagram: "https://instagram.com/yourusername",
-  portfolio: "https://yourportfolio.com",
+  instagram: "https://instagram.com/iyerprash_93",
+  portfolio: "https://prashant-portfolio.com",
 };
 
 export const CONTACT_INFO = {
   address: {
-    street: "123 Tech Street",
-    city: "Mumbai",
+    street: "Hanuman Nagar",
+    city: "Kalyan",
     state: "Maharashtra",
     country: "India",
-    pincode: "400001",
+    pincode: "421306",
   },
   availability: "Available for freelance work",
   responseTime: "Usually responds within 24 hours",
