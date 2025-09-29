@@ -15,8 +15,9 @@ import {
   SOCIAL_LINKS,
   ANIMATION_VARIANTS,
 } from "../../utils/constants";
-import { validateEmail, validatePhone } from "../../utils/helpers";
+import { validateEmail } from "../../utils/helpers";
 import Button from "../ui/Button";
+import { contactAPI } from "../../services/api"; // ✅ Import API
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -79,9 +80,7 @@ const Contact = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    }
+    if (!formData.name.trim()) newErrors.name = "Name is required";
 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
@@ -89,9 +88,7 @@ const Contact = () => {
       newErrors.email = "Please enter a valid email";
     }
 
-    if (!formData.subject.trim()) {
-      newErrors.subject = "Subject is required";
-    }
+    if (!formData.subject.trim()) newErrors.subject = "Subject is required";
 
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
@@ -107,7 +104,6 @@ const Contact = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
@@ -120,12 +116,15 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // ✅ Send to backend
+      const result = await contactAPI.sendMessage(formData);
 
-      // Reset form
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setSubmitStatus("success");
+      if (result.success) {
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setSubmitStatus("success");
+      } else {
+        setSubmitStatus("error");
+      }
     } catch (error) {
       setSubmitStatus("error");
     } finally {
@@ -154,7 +153,7 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
+          {/* Left Section - Info */}
           <motion.div
             className="space-y-8"
             variants={ANIMATION_VARIANTS.fadeInLeft}
@@ -174,7 +173,7 @@ const Contact = () => {
               </p>
             </div>
 
-            {/* Contact Cards */}
+            {/* Contact Info */}
             <div className="space-y-4">
               {contactInfo.map((contact, index) => (
                 <motion.button
@@ -219,7 +218,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Availability Status */}
+            {/* Availability */}
             <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
@@ -233,7 +232,7 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Right Section - Form */}
           <motion.div
             variants={ANIMATION_VARIANTS.fadeInRight}
             initial="hidden"
@@ -246,7 +245,7 @@ const Contact = () => {
               </h3>
 
               <div className="space-y-6">
-                {/* Name Input */}
+                {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
@@ -270,7 +269,7 @@ const Contact = () => {
                   )}
                 </div>
 
-                {/* Email Input */}
+                {/* Email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -294,7 +293,7 @@ const Contact = () => {
                   )}
                 </div>
 
-                {/* Subject Input */}
+                {/* Subject */}
                 <div>
                   <label
                     htmlFor="subject"
@@ -320,7 +319,7 @@ const Contact = () => {
                   )}
                 </div>
 
-                {/* Message Input */}
+                {/* Message */}
                 <div>
                   <label
                     htmlFor="message"
@@ -349,7 +348,7 @@ const Contact = () => {
                   </p>
                 </div>
 
-                {/* Submit Button */}
+                {/* Submit */}
                 <Button
                   onClick={handleSubmit}
                   variant="primary"
@@ -361,7 +360,7 @@ const Contact = () => {
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
 
-                {/* Status Messages */}
+                {/* Status */}
                 {submitStatus === "success" && (
                   <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
                     <p className="text-green-400 font-medium">
@@ -369,7 +368,6 @@ const Contact = () => {
                     </p>
                   </div>
                 )}
-
                 {submitStatus === "error" && (
                   <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
                     <p className="text-red-400 font-medium">

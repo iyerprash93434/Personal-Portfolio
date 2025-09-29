@@ -47,16 +47,58 @@ export const contactAPI = {
   // Send contact form message
   sendMessage: async (contactData) => {
     try {
-      const response = await api.post("/api/contact", contactData);
+      console.log("Sending message to API:", contactData);
+      console.log("API Base URL:", process.env.REACT_APP_API_BASE_URL);
+
+      // Ensure all required fields are present and properly formatted
+      const payload = {
+        name: contactData.name?.trim() || "",
+        email: contactData.email?.trim() || "",
+        subject: contactData.subject?.trim() || "",
+        message: contactData.message?.trim() || "",
+        phone: contactData.phone?.trim() || "", // Optional field if backend requires it
+        timestamp: contactData.timestamp || new Date().toISOString(),
+      };
+
+      console.log("Formatted payload:", payload);
+
+      // Use the correct endpoint that matches your backend
+      const response = await api.post("/api/contact", payload);
+
+      console.log("API Response received:", response);
+
       return {
         success: true,
         data: response,
         message: "Message sent successfully!",
       };
     } catch (error) {
+      console.error("Contact API Error:", error);
+      console.error("Error response:", error.response?.data);
+      console.error("Error status:", error.response?.status);
+      console.error("Error message:", error.message);
+
+      // Extract validation errors if present
+      let errorMessage = "Failed to send message. Please try again.";
+
+      if (
+        error.response?.data?.errors &&
+        Array.isArray(error.response.data.errors)
+      ) {
+        // Format validation errors
+        errorMessage = error.response.data.errors
+          .map((err) => err.msg)
+          .join(", ");
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+
       return {
         success: false,
-        message: error.message || "Failed to send message. Please try again.",
+        message: errorMessage,
+        errors: error.response?.data?.errors,
         error: error,
       };
     }
